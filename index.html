@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>xay dung lop mo ta nhiet do</title>
+</head>
+<body>
+<p>nhap gia tri Do C: <input type="text " id="c"></p>
+<p><button onclick="save ()">save</button></p>
+<p id="do_C"></p>
+<p id="F"></p>
+<p id="K"></p>
+<script>
+    arrC = [];
+    arrF = [];
+    arrK = [];
+    class Temperatute {
+        constructor(doC) {
+            this.doC = doC;
+        }
+        getdoC () {
+            return this.doC;
+        }
+
+    }
+    class TemperatureS {
+        constructor() {
+            this.arrC = [];
+        }
+
+
+        doCtodoF () {
+            let doF = 0
+            for (let i=0; i<this.arrC.length;i++) {
+                doF = this.arrC[i] * 9 / 5 + 32;
+            }
+
+            return doF;
+        }
+
+        doCtodoK () {
+            let doK = 0
+            for (let i=0; i<this.arrC.length;i++) {
+                doK = this.arrC[i] + 273.15;
+            }
+            return doK;
+        }
+
+        add () {
+            let n = document.getElementById('c').value;
+            let doC1 = new Temperatute(n);
+            this.arrC.push(doC1.getdoC());
+        }
+
+        clear () {
+            document.getElementById('c').value = '';
+        }
+    }
+    let temS = new TemperatureS()
+    function save() {
+        temS.add()
+        temS.clear()
+        arrF.push(temS.doCtodoF())
+        arrK.push(temS.doCtodoK())
+
+        document.getElementById('do_C').innerHTML = `do C: ${temS.arrC}`
+        document.getElementById('F').innerHTML = `do F: ${arrF}`
+        document.getElementById('K').innerHTML = `do K: ${arrK}`
+
+    }
+
+
+
+
+</script>
+</body>
+</html>
